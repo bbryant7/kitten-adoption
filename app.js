@@ -35,16 +35,22 @@ app.use(bodyParser.urlencoded({
 //   name: "Ms. Priss",
 //   age: "1 year"
 // })
-//
-//
-//
-// //
-// // lyla.save()
-//   .then(function() {
-//     console.log('saved ' + lyla);
-// }).catch(function(error) {
-//   console.log('error ' + JSON.stringify(error));
+
+// const twinkle = new kitten({
+//   name: "twinkle",
+//   age: "8 weeks",
+//   breed: "Bengal"
 // })
+// //
+// //
+// //
+// //
+//  twinkle.save()
+//     .then(function() {
+//     console.log('saved ' + twinkle);
+//   }).catch(function(error) {
+//   console.log('error ' + JSON.stringify(error));
+//  })
 
 
 // console.log(new kitten({name: "Oliver"}));
@@ -55,6 +61,27 @@ app.get('/', function(req, res) {
 
 
   });
+
+
+  app.post("/add", function(req, res) {
+  let newName = req.body.name;
+  let newAge = req.body.age;
+  let newBreed = req.body.breed;
+  let newActivities = req.body.activities;
+  const newCat = new kitten({
+    name: newName,
+    age: newAge,
+    breed: newBreed,
+    activitites: newActivities
+    })
+    newCat.save().then(function(kittens) {
+      console.log('saved ' + name);
+      res.render('kitten-display',{available: kittens});
+
+  })
+
+  });
+
 
   app.listen(3000, function() {
     console.log('Successfully started express application!');

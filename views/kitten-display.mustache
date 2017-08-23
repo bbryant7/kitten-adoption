@@ -28,8 +28,14 @@
 
     <div ="new">
     <h2> Share a cat!</h2>
-    <form>
-      <input type="text" placeholder="Cat Name">
+    <form action="/add" method="post">
+      <input type="text" name="name" placeholder="Cat Name">
+      <br>
+      <input type="text" name="age" placeholder="Cat Age">
+      <br>
+      <input type="text" name="breed" placeholder="Cat Breed">
+      <br>
+      <button type="submit" name="submit">Submit</button>
 
   </form>
 
