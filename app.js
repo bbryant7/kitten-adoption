@@ -55,15 +55,17 @@ app.use(bodyParser.urlencoded({
 
 // console.log(new kitten({name: "Oliver"}));
 app.get('/', function(req, res) {
-    kitten.find().then(function(kittens){
-      res.render('kitten-display',{available: kittens});
-    })
+  kitten.find().then(function(kittens) {
+    res.render('kitten-display', {
+      available: kittens
+    });
+  })
 
 
-  });
+});
 
 
-  app.post("/add", function(req, res) {
+app.post("/add", function(req, res) {
   let newName = req.body.name;
   let newAge = req.body.age;
   let newBreed = req.body.breed;
@@ -73,19 +75,30 @@ app.get('/', function(req, res) {
     age: newAge,
     breed: newBreed,
     activitites: newActivities
-    })
-    newCat.save().then(function(kittens) {
-      console.log('saved ' + name);
-      res.render('kitten-display',{available: kittens});
+  })
+
+  newCat.save()
+  .then(function() {
+    return kitten.find()
+  })
+  .then(function(kittens) {
+    res.render('kitten-display', {
+      available: kittens})
 
   })
 
-  });
+});
+
+app.post("/add", function(req, res){
+
+  res.render('kitten-display', {
+    available: kittens})
+})
 
 
-  app.listen(3000, function() {
-    console.log('Successfully started express application!');
-  })
+app.listen(3000, function() {
+  console.log('Successfully started express application!');
+})
 
 
 process.on('SIGINT', function() {
