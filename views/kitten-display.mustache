@@ -14,14 +14,16 @@
         <p> Say hi to: {{name}}!</p>
         </div>
         <div>
-        {{age}}
+        <p> Age: {{age}} </p>
         </div>
         <div>
-        {{breed}}
+        <p> Breed: {{breed}} </p>
         </div>
-        <div>
-        <p>{{name}} loves to: {{activities}}
-        </div>
+    
+
+      <form action="/delete/{{name}}" method="post">
+      <button type="submit" name={{name}}>Adopt Me!</button>
+      </form>
       </div>
         {{/available}}
     </div>

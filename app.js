@@ -89,11 +89,19 @@ app.post("/add", function(req, res) {
 
 });
 
-app.post("/add", function(req, res){
+app.post("/delete/:name", function(req, res){
 
-  res.render('kitten-display', {
-    available: kittens})
-})
+  kitten.deleteOne({name: req.params.name})
+  .then(function() {
+    return kitten.find()
+  })
+  .then(function(kittens) {
+    res.render('kitten-display', {
+      available: kittens})
+
+  })
+
+});
 
 
 app.listen(3000, function() {
